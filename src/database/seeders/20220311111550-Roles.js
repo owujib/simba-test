@@ -37,7 +37,6 @@ module.exports = {
         },
         {
           name: 'finance',
-          guard_name: 'api',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

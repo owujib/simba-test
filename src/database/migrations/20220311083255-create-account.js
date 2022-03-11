@@ -35,7 +35,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.addColumn('Users', 'userId', {
+    await queryInterface.addColumn('Accounts', 'userId', {
       type: Sequelize.INTEGER(11),
       allowNull: false,
       key: 'userId',

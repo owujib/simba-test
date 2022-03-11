@@ -46,23 +46,23 @@ module.exports = {
       onDelete: 'CASCADE',
     });
 
-    await queryInterface.addColumn('Users', 'accountId', {
-      type: Sequelize.INTEGER(11),
-      allowNull: false,
-      key: 'accountId',
-      model: 'Account',
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-    });
+    // await queryInterface.addColumn('Users', 'accountId', {
+    //   type: Sequelize.INTEGER(11),
+    //   allowNull: false,
+    //   key: 'accountId',
+    //   model: 'Account',
+    //   onUpdate: 'CASCADE',
+    //   onDelete: 'CASCADE',
+    // });
 
-    await queryInterface.addColumn('Users', 'transferId', {
-      type: Sequelize.INTEGER(11),
-      allowNull: false,
-      key: 'transferId',
-      model: 'Transfer',
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-    });
+    // await queryInterface.addColumn('Users', 'transferId', {
+    //   type: Sequelize.INTEGER(11),
+    //   allowNull: false,
+    //   key: 'transferId',
+    //   model: 'Transfer',
+    //   onUpdate: 'CASCADE',
+    //   onDelete: 'CASCADE',
+    // });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users');

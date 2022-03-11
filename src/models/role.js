@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
      * @description method helps get role id by name
      */
     static async fetchRoleIdByName(roleName) {
-      const roleId = this.findOne({ where: { name: roleName } });
+      const roleId = await this.findOne({ where: { name: roleName } });
       if (!roleId) {
         return new ApiError('record does not exist');
       }

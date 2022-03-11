@@ -12,5 +12,6 @@ router.get('/', (req, res, next) => {
 
 /**@routes auth routes */
 router.post('/user/register', AuthController.create);
+router.post('/user/login', AuthController.login);
 
 module.exports = router;

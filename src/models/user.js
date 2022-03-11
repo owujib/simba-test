@@ -16,17 +16,27 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
 
-      this.belongsTo(Transaction, {
-        foreignKey: 'transactionId',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      // this.belongsTo(Transaction, {
+      //   foreignKey: 'transactionId',
+      //   onDelete: 'CASCADE',
+      //   onUpdate: 'CASCADE',
+      // });
 
-      this.hasMany(Account, {
-        foreignKey: 'accountId',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      // this.hasMany(Account, {
+      //   foreignKey: 'accountId',
+      //   onDelete: 'CASCADE',
+      //   onUpdate: 'CASCADE',
+      // });
+    }
+
+    /**
+     *
+     * @param {string} inputPassword
+     * @param {string} userPassword
+     * @returns {boolean}
+     */
+    static async comparePassword(inputPassword, userPassword) {
+      return bcryptjs.compare(inputPassword, userPassword);
     }
   }
   User.init(
@@ -60,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.beforeCreate(async (user, options) => {
     /**check if the recors is a new one */
-    if (user.isNewRecord || !user.changed('password')) {
+    if (!user.isNewRecord || !user.changed('password')) {
       return false;
     }
 
@@ -69,5 +79,6 @@ module.exports = (sequelize, DataTypes) => {
     user.password = hashedPassword;
     return user;
   });
+
   return User;
 };

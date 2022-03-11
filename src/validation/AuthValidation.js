@@ -1,6 +1,7 @@
 const JOI = require('joi');
 
 exports.registerValidation = (data) => {
+  console.log(data);
   const schema = JOI.object({
     name: JOI.string().required().max(20).messages({
       'any.base': `{{#label}} should be a type of 'text'`,

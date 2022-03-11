@@ -7,6 +7,8 @@ const apiRoutes = require('./routes/api');
 const webRoutes = require('./routes/web');
 const { sequelize } = require('./models');
 const GlobalErrorhandler = require('./helpers/GlobalErrorhandler');
+const ApiError = require('./utils/ApiError');
+const Response = require('./helpers/Response');
 
 class App {
   constructor() {
@@ -29,6 +31,9 @@ class App {
     //this.server.use(routes);
     this.server.use('/', webRoutes);
     this.server.use('/api', apiRoutes);
+    this.server.all('*', (req, res, next) =>
+      next(new ApiError('Route not found', Response.HTTP_NOT_FOUND, null)),
+    );
   }
   globalErrorHandler() {
     this.server.use(GlobalErrorhandler);

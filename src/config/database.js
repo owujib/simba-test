@@ -1,4 +1,6 @@
-module.exports = {
+require('dotenv').config();
+
+const dbConfig = {
   development: {
     username: 'root',
     password: null,
@@ -21,3 +23,13 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
   },
 };
+
+let config;
+
+if (process.env.NODE_ENV === 'development') {
+  config = dbConfig.development;
+} else if (process.env.NODE_ENV === 'production') {
+  config = dbConfig.production;
+}
+
+module.exports = config;
